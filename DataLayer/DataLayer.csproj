@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{54EB84BC-054C-4EEC-A9D3-628B27E3D014}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EasyBase.DataLayer</RootNamespace>
+    <AssemblyName>EasyBase.DataLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <PlatformTarget>x86</PlatformTarget>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\EasyBase\DataLayer\ConnectionException.cs">
+      <Link>Kernel\ConnectionException.cs</Link>
+    </Compile>
+    <Compile Include="DataLayerCustom.cs" />
+    <Compile Include="DatabaseDefinitions.cs" />
+    <Compile Include="DatabaseConversions.cs" />
+    <Compile Include="..\EasyBase\DataLayer\Database\ViewFieldSchema.cs">
+      <Link>Kernel\Database\ViewFieldSchema.cs</Link>
+    </Compile>
+    <Compile Include="..\EasyBase\DataLayer\Database\DatabaseSchema.cs">
+      <Link>Kernel\Database\DatabaseSchema.cs</Link>
+    </Compile>
+    <Compile Include="..\EasyBase\DataLayer\Database\DatabaseSchemaException.cs">
+      <Link>Kernel\Database\DatabaseSchemaException.cs</Link>
+    </Compile>
+    <Compile Include="..\EasyBase\DataLayer\Database\FieldSchema.cs">
+      <Link>Kernel\Database\FieldSchema.cs</Link>
+    </Compile>
+    <Compile Include="..\EasyBase\DataLayer\Database\ForeignKeyFieldSchema.cs">
+      <Link>Kernel\Database\ForeignKeyFieldSchema.cs</Link>
+    </Compile>
+    <Compile Include="..\EasyBase\DataLayer\Database\PrimaryKeyFieldSchema.cs">
+      <Link>Kernel\Database\PrimaryKeyFieldSchema.cs</Link>
+    </Compile>
+    <Compile Include="..\EasyBase\DataLayer\Database\TableSchema.cs">
+      <Link>Kernel\Database\TableSchema.cs</Link>
+    </Compile>
+    <Compile Include="..\EasyBase\DataLayer\Database\UniqueKey.cs">
+      <Link>Kernel\Database\UniqueKey.cs</Link>
+    </Compile>
+    <Compile Include="..\EasyBase\DataLayer\Exceptions.cs">
+      <Link>Kernel\Exceptions.cs</Link>
+    </Compile>
+    <Compile Include="Generated\DataLayer.cs" />
+    <Compile Include="..\EasyBase\DataLayer\IEasyBaseConnection.cs">
+      <Link>Kernel\IEasyBaseConnection.cs</Link>
+    </Compile>
+    <Compile Include="..\EasyBase\DataLayer\BaseDataLayer.cs">
+      <Link>Kernel\BaseDataLayer.cs</Link>
+    </Compile>
+    <Compile Include="..\EasyBase\DataLayer\BackupException.cs">
+      <Link>Kernel\BackupException.cs</Link>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="..\EasyBase\DataLayer\Database\DataLayerTableAttribute.cs">
+      <Link>Kernel\Database\DataLayerTableAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\EasyBase\DataLayer\Database\DataLayerFieldAttribute.cs">
+      <Link>Kernel\Database\DataLayerFieldAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\EasyBase\DataLayer\SqlConnection.cs">
+      <Link>Kernel\SqlConnection.cs</Link>
+    </Compile>
+    <Compile Include="..\EasyBase\DataLayer\DataLayerSystem.cs">
+      <Link>Kernel\DataLayerSystem.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\EasyBase\DataLayer\TransactionHelper.cs">
+      <Link>Kernel\TransactionHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\EasyBase\DataLayer\SqlUpdateCommand.cs">
+      <Link>Kernel\SqlUpdateCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\EasyBase\DataLayer\StoredProcedure.cs">
+      <Link>Kernel\StoredProcedure.cs</Link>
+    </Compile>
+    <Compile Include="..\EasyBase\DataLayer\StoredProcedureAttribute.cs">
+      <Link>Kernel\StoredProcedureAttribute.cs</Link>
+    </Compile>
+    <Compile Include="StoredProcedures\CalculateBalance.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj">
+      <Project>{ABAC779F-F0BB-4077-A47C-DFCD9B8AE74E}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

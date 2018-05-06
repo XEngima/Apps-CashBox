@@ -1,0 +1,11 @@
+C:\Projekt\CashBox\BusinessLayer\bin\Release\EasyBase.BusinessLayer.dll
+C:\Projekt\CashBox\BusinessLayer\bin\Release\EasyBase.BusinessLayer.pdb
+C:\Projekt\CashBox\BusinessLayer\bin\Release\DanielEiserman.dll
+C:\Projekt\CashBox\BusinessLayer\bin\Release\EasyBase.DataLayer.dll
+C:\Projekt\CashBox\BusinessLayer\bin\Release\EasyBase.Shared.dll
+C:\Projekt\CashBox\BusinessLayer\bin\Release\EasyBase.DataLayer.pdb
+C:\Projekt\CashBox\BusinessLayer\bin\Release\DanielEiserman.pdb
+C:\Projekt\CashBox\BusinessLayer\bin\Release\EasyBase.Shared.pdb
+C:\Projekt\CashBox\BusinessLayer\obj\x86\Release\BusinessLayer.csprojResolveAssemblyReference.cache
+C:\Projekt\CashBox\BusinessLayer\obj\x86\Release\EasyBase.BusinessLayer.dll
+C:\Projekt\CashBox\BusinessLayer\obj\x86\Release\EasyBase.BusinessLayer.pdb

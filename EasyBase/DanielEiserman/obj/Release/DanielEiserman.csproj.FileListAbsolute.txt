@@ -1,0 +1,5 @@
+C:\Projekt\CashBox\EasyBase\DanielEiserman\bin\Release\DanielEiserman.dll
+C:\Projekt\CashBox\EasyBase\DanielEiserman\bin\Release\DanielEiserman.pdb
+C:\Projekt\CashBox\EasyBase\DanielEiserman\obj\Release\DanielEiserman.csprojResolveAssemblyReference.cache
+C:\Projekt\CashBox\EasyBase\DanielEiserman\obj\Release\DanielEiserman.dll
+C:\Projekt\CashBox\EasyBase\DanielEiserman\obj\Release\DanielEiserman.pdb

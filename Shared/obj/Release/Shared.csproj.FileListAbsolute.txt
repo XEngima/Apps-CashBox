@@ -1,0 +1,7 @@
+C:\Projekt\CashBox\Shared\bin\Release\EasyBase.Shared.dll
+C:\Projekt\CashBox\Shared\bin\Release\EasyBase.Shared.pdb
+C:\Projekt\CashBox\Shared\bin\Release\DanielEiserman.dll
+C:\Projekt\CashBox\Shared\bin\Release\DanielEiserman.pdb
+C:\Projekt\CashBox\Shared\obj\Release\Shared.csprojResolveAssemblyReference.cache
+C:\Projekt\CashBox\Shared\obj\Release\EasyBase.Shared.dll
+C:\Projekt\CashBox\Shared\obj\Release\EasyBase.Shared.pdb

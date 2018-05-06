@@ -1,0 +1,12 @@
+C:\Projekt\CashBox\UnitTesting\bin\Debug\UnitTesting.dll
+C:\Projekt\CashBox\UnitTesting\bin\Debug\UnitTesting.pdb
+C:\Projekt\CashBox\UnitTesting\bin\Debug\EasyBase.DataLayer.dll
+C:\Projekt\CashBox\UnitTesting\bin\Debug\EasyBase.Shared.dll
+C:\Projekt\CashBox\UnitTesting\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Projekt\CashBox\UnitTesting\bin\Debug\DanielEiserman.dll
+C:\Projekt\CashBox\UnitTesting\bin\Debug\EasyBase.DataLayer.pdb
+C:\Projekt\CashBox\UnitTesting\bin\Debug\EasyBase.Shared.pdb
+C:\Projekt\CashBox\UnitTesting\bin\Debug\DanielEiserman.pdb
+C:\Projekt\CashBox\UnitTesting\obj\Debug\UnitTesting.csprojResolveAssemblyReference.cache
+C:\Projekt\CashBox\UnitTesting\obj\Debug\UnitTesting.dll
+C:\Projekt\CashBox\UnitTesting\obj\Debug\UnitTesting.pdb

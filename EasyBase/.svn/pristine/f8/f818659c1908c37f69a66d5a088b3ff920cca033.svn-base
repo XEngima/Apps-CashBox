@@ -1,0 +1,160 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+using EasyBase.Classes;
+using EasyBase.DataLayer;
+using System.Transactions;
+
+namespace EasyBase.BusinessLayer
+{
+	public partial class StandardBusinessLayer : IDisposable, IProgressable
+	{
+        public event ProgressEventHandler Progress;
+
+		public StandardBusinessLayer()
+		{
+			Database = new StandardDataLayer();
+		}
+
+        private void OnProgress(int currentValue, int targetValue, string message)
+        {
+            if (Progress != null) {
+                Progress(this, new ProgressEventArgs(currentValue, targetValue, message));
+            }
+        }
+
+		/// <summary>
+		/// Opens a connection to the database.
+		/// </summary>
+		public void Connect()
+		{
+			Connect(false);
+		}
+
+        /// <summary>
+        /// Throws an exception of type NotConnectedToReleaseDatabaseException if not connected to the release database.
+        /// </summary>
+        public bool ConnectedToReleaseDatabase
+        {
+            get { return Database.ConnectedToReleaseDatabase; }
+        }
+
+	    public static int DatabaseVersion {
+            get { return DatabaseDefinition.DatabaseVersion; }
+        }
+
+		/// <summary>
+		/// Opens a connection to the database.
+		/// </summary>
+		public void Connect(bool overrideDatabaseSchemaCheck)
+		{
+			Database.Connect(overrideDatabaseSchemaCheck);
+		}
+
+        public static bool OkForTesting
+        {
+            get { return StandardDataLayer.OkForTesting; }
+        }
+
+        public void Dispose()
+        {
+        }
+
+		/// <summary>
+		/// Disconnects the database.
+		/// </summary>
+		public void Disconnect()
+		{
+			Database.Disconnect();
+		}
+
+		private StandardDataLayer Database
+		{
+			get;
+			set;
+		}
+
+        /// <summary>
+        /// Bygger upp alla tabeller och vyer i en databas i enlighet med den senaste versionen. Databasen måste finnas innan den här funktionen används.
+        /// </summary>
+        public void BuildDatabase()
+		{
+			Database.BuildDatabase();
+		}
+
+        /// <summary>
+        /// Skapar en tom databas med samma namn som i kopplingssträngen på webbservern.
+        /// </summary>
+        public void CreateDatabaseFromScratch()
+	    {
+	        Database.CreateDatabaseFromScratch();
+	    }
+
+		public void DropAllTablesInDatabase()
+		{
+			Database.DropAllTablesInDatabase();
+		}
+
+		public void UpdateDatabase()
+		{
+			Database.UpdateDatabase();
+		}
+
+		public string GetDatabaseXml()
+		{
+			return StandardDataLayer.GetDatabaseDefinitionXml();
+		}
+
+		public string[] GetCreateDatabaseScript()
+		{
+			return StandardDataLayer.GetCreateSqlScript();
+		}
+
+		/// <summary>
+		/// Checks whether the database need to be updated or not.
+		/// </summary>
+		/// <returns>true if the database needs update, otherwise false.</returns>
+		public bool NeedToUpdateDatabase()
+		{
+			bool needToUpdate;
+
+			needToUpdate = Database.NeedToUpdateDatabase();
+			return needToUpdate;
+		}
+
+		/// <summary>
+		/// Checks that the coded database and the current database schema agrees.
+		/// </summary>
+		public bool CheckDatabase()
+		{
+			return Database.CheckDatabase();
+		}
+
+		public void CreateBackup(string fullPath)
+		{
+			Database.CreateBackup(fullPath);
+		}
+
+        /// <summary>
+        /// Restores the backup and updates the database to the latest version.
+        /// </summary>
+        /// <param name="fullPath"></param>
+		public void RestoreBackup(string fullPath)
+		{
+            RestoreBackup(fullPath, StandardBusinessLayer.DatabaseVersion);
+		}
+
+        public void RestoreBackup(string fullPath, int toDatabaseVersion)
+        {
+            Database.Progress += new ProgressEventHandler(Database_Progress);
+            Database.RestoreBackup(fullPath, toDatabaseVersion);
+        }
+
+        void Database_Progress(object sender, ProgressEventArgs e)
+        {
+            OnProgress(e.CurrentValue, e.TargetValue, e.Message);
+        }
+	}
+}

@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ABAC779F-F0BB-4077-A47C-DFCD9B8AE74E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EasyBase.Classes</RootNamespace>
+    <AssemblyName>EasyBase.Shared</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.cs" />
+    <Compile Include="Attributes\DatabaseFieldAttribute.cs" />
+    <Compile Include="Attributes\DatabaseTableAttribute.cs" />
+    <Compile Include="..\EasyBase\Shared\Condition.cs">
+      <Link>Kernel\Condition.cs</Link>
+    </Compile>
+    <Compile Include="CurrentApplication.cs" />
+    <Compile Include="..\EasyBase\Shared\DatabaseException.cs">
+      <Link>Kernel\DatabaseException.cs</Link>
+    </Compile>
+    <Compile Include="DictionaryItem.cs" />
+    <Compile Include="Generated\AddOn\CashBookTransaction.cs" />
+    <Compile Include="Generated\AddOn\AccountTransaction.cs" />
+    <Compile Include="Generated\AddOn\Verification.cs" />
+    <Compile Include="Generated\Enums.cs" />
+    <Compile Include="Generated\Classes.cs" />
+    <Compile Include="Generated\Collections.cs" />
+    <Compile Include="Generated\DataTables.cs" />
+    <Compile Include="..\EasyBase\Shared\IProgressable.cs">
+      <Link>Kernel\IProgressable.cs</Link>
+    </Compile>
+    <Compile Include="..\EasyBase\Shared\SortOrder.cs">
+      <Link>Kernel\SortOrder.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\EasyBase\Shared\EasyBaseSystem.cs">
+      <Link>Kernel\EasyBaseSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\EasyBase\Shared\EasyBaseSystemEnum.cs">
+      <Link>Kernel\EasyBaseSystemEnum.cs</Link>
+    </Compile>
+    <Compile Include="..\EasyBase\Shared\EasyBaseSystemTable.cs">
+      <Link>Kernel\EasyBaseSystemTable.cs</Link>
+    </Compile>
+    <Compile Include="VerificationException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EasyBase\DanielEiserman\DanielEiserman.csproj">
+      <Project>{60263695-5D5F-4E48-8323-2DE64F5CDDBE}</Project>
+      <Name>DanielEiserman</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

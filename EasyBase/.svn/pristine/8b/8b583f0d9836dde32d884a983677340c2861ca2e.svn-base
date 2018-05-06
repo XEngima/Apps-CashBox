@@ -1,0 +1,161 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using DanielEiserman.DateAndTime;
+using EasyBase.BusinessLayer;
+using EasyBase.Classes;
+
+namespace EasyBase
+{
+	public partial class MainForm : Form
+	{
+		private StandardBusinessLayer Core
+		{
+			get;
+			set;
+		}
+
+		public MainForm()
+		{
+			InitializeComponent();
+			Core = new StandardBusinessLayer();
+		}
+
+		private void Form1_Load(object sender, EventArgs e)
+		{
+		    databaseVersionTextBox.Text = StandardBusinessLayer.DatabaseVersion.ToString();
+
+			try {
+				Core.Connect(true);
+
+				bool needToUpdate = Core.NeedToUpdateDatabase();
+
+				if (needToUpdate) {
+					DialogResult result = MessageBox.Show("Databasen behöver uppdateras. Vill du uppdatera databasen nu?", "Uppdatera databasen", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+					if (result == DialogResult.Yes) {
+
+                        if (CurrentApplication.IsProduktion) {
+                            DialogResult result2 = MessageBox.Show("Varning!\n\nDu försöker nu uppdatera det skarpa systemet. Vill du verkligen fortsätta?", "Varning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
+                            if (result2 == DialogResult.No) {
+                                return;
+                            }
+                        };
+
+						// Uppdatera databasen
+						Core.UpdateDatabase();
+					}
+					else {
+						//Environment.Exit(0);
+					}
+				}
+			}
+			catch (DatabaseCorruptException) {
+				MessageBox.Show("Databasen är korrupt. Kör funktionen för att skapa den på nytt!", "Easy Base", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+			}
+			catch (Exception ex) {
+				MessageBox.Show(ex.Message, "Easy Base", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+			}
+		}
+
+        private void Button_Click(object sender, EventArgs e)
+        {
+			TextMessageBox.Show(Core.GetDatabaseXml());
+        }
+
+		private void createDatabaseButton_Click(object sender, EventArgs e)
+		{
+			Core.BuildDatabase();
+			MessageBox.Show("Databas skapad!", "Databas skapad", MessageBoxButtons.OK, MessageBoxIcon.Information);
+		}
+
+		private void showSqlButton_Click(object sender, EventArgs e)
+		{
+			StringBuilder sql = new StringBuilder();
+
+			foreach (string s in Core.GetCreateDatabaseScript()) {
+				sql.AppendLine(s);
+			}
+
+			TextMessageBox.Show(sql.ToString());
+		}
+
+		private void dropButton_Click(object sender, EventArgs e)
+		{
+			Core.DropAllTablesInDatabase();
+			MessageBox.Show("Databas droppad!", "Databas droppad", MessageBoxButtons.OK, MessageBoxIcon.Information);
+		}
+
+		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			Core.Disconnect();
+		}
+
+		private void createBackupButton_Click(object sender, EventArgs e)
+		{
+            try {
+                Core.CreateBackup("c:\\projekt\\backup.txt");
+                MessageBox.Show("Backup skapad!");
+            }
+            catch (DatabaseVersionException ex) {
+                MessageBox.Show(ex.Message, "Database version error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+		}
+
+		private void restoreBackupButton_Click(object sender, EventArgs e)
+		{
+            DialogResult result;
+
+            if (CurrentApplication.IsProduktion) {
+                result = MessageBox.Show("Varning!\n\nDu försöker nu läsa in en backup i det skarpa systemet. Vill du verkligen fortsätta?", "Varning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2);
+                if (result == DialogResult.No) {
+                    return;
+                }
+            }
+
+		    //RestoreBackupForm restoreBackupForm = new RestoreBackupForm();
+            //restoreBackupForm.ShowDialog();
+
+            var fileDialog = new OpenFileDialog {
+                Filter = CurrentApplication.Name + "-backupfiler|*.backup|Alla filer|*.*",
+                CheckFileExists = true
+            };
+
+            result = fileDialog.ShowDialog();
+
+            if (result == DialogResult.OK) {
+                result = MessageBox.Show("Varning!\n\nOm du återläser en backup kommer all befintlig data i systemet först att raderas. Är du säker på att du vill återläsa den aktuella backupen?", CurrentApplication.Name, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+
+                if (result != DialogResult.Yes) {
+                    return;
+                }
+
+                int toDatabaseVersion = int.Parse(databaseVersionTextBox.Text.Trim());
+                var form = new RestoreBackupForm { FullPath = fileDialog.FileName, ToDatabaseVersion = toDatabaseVersion };
+                form.ShowDialog();
+
+                MessageBox.Show("Backupen återlästes. Du måste nu starta om programmet.", CurrentApplication.Name, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Environment.Exit(0);
+            }
+        }
+
+        private void restoreBackupBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+        }
+
+        private void restoreBackupBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+        }
+
+        private void restoreBackupBackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+        }
+	}
+}

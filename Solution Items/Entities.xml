@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EasyBase DataLayerNameSpace='EasyBase.DataLayer.Standard' BusinessLayerNameSpace='EasyBase.BusinessLayer.Standard'>
+  <Enums>
+    <Enum Name='CashBoxDateType'>
+      <EnumValue>TransactionDate</EnumValue>
+      <EnumValue>AccountingDate</EnumValue>
+    </Enum>
+  </Enums>
+
+  <Entities>
+
+    <Entity NameSingular='User'>
+      <Fields>
+        <PrimaryKeyField Name='No' Type='int' IsIdentity='true' />
+        <Field Name='Name' Type='varchar(128)' />
+        <Field Name='Email' Type='varchar(128)' UniqueKeyGroup='1' />
+        <Field Name='Password' Type='varchar(128)' />
+        <Field Name='CreatedTime' Type='datetime' />
+      </Fields>
+    </Entity>
+
+    <Entity NameSingular='Category'>
+      <Fields>
+        <PrimaryKeyField Name='No' Type='int' IsIdentity='true' />
+        <ForeignKeyField Name='ParentCategoryNo' Type='int' TargetEntity='Category' TargetField='No' AllowNull='true' />
+        <Field Name='Type' Type='int' EnumValues='Expense/Income' />
+        <Field Name='Name' Type='varchar(128)' />
+        <Field Name='IsArchived' Type='bit' />
+        <Field Name='CreatedTime' Type='datetime' />
+        <Field Name='ShowInDiagram' Type='bit' />
+      </Fields>
+    </Entity>
+
+    <Entity NameSingular='Account' IsView='true'>
+      <Fields>
+        <PrimaryKeyField Name='No' Type='int' IsIdentity='true' />
+        <ForeignKeyField Name='UserNo' Type='int' TargetEntity='User' TargetField='No' />
+        <Field Name='Type' Type='int' EnumValues='Asset/Debt' />
+        <Field Name='Name' Type='varchar(128)' />
+        <Field Name='BalanceBroughtForwardAmount' Type='money' />
+        <Field Name='IsArchived' Type='bit' />
+        <Field Name='CreatedTime' Type='datetime' />
+        <Field Name='ShowInDiagram' Type='bit' />
+        <ViewField Name='Balance' Type='money' />
+      </Fields>
+    </Entity>
+
+    <Entity NameSingular='TagAccount' IsView='true' >
+      <Fields>
+        <PrimaryKeyField Name='No' Type='int' IsIdentity='true' />
+        <Field Name='Name' Type='varchar(128)' UniqueKeyGroup='1' />
+        <Field Name='IsArchived' Type='bit' />
+        <Field Name='CreatedTime' Type='datetime' />
+        <ViewField Name='Amount' Type='money' />
+      </Fields>
+    </Entity>
+
+    <Entity NameSingular='AccountTag' IsView='true' >
+      <Fields>
+        <PrimaryKeyField Name='No' Type='int' IsIdentity='true' />
+        <ForeignKeyField Name='TagAccountNo' Type='int' TargetEntity='TagAccount' TargetField='No' />
+        <ForeignKeyField Name='AccountNo' Type='int' TargetEntity='Account' TargetField='No' />
+        <Field Name='Type' Type='int' EnumValues='ExactAmount/PercentOfRest' />
+        <Field Name='MoneyValue' Type='money' />
+        <Field Name='RelativeValue' Type='decimal(18,9)' />
+        <ViewField Name='TagAccountName' Type='varchar(128)' />
+        <ViewField Name='Amount' Type='money' />
+      </Fields>
+    </Entity>
+        
+    <Entity NameSingular='Verification'>
+      <Fields>
+        <PrimaryKeyField Name='No' Type='int' IsIdentity='true' />
+        <Field Name='Year' Type='int' UniqueKeyGroup='1' />
+        <Field Name='SerialNo' Type='int' UniqueKeyGroup='1' />
+        <Field Name='Date' Type='smalldatetime' />
+        <Field Name='AccountingDate' Type='smalldatetime' />
+      </Fields>
+    </Entity>
+    
+    <Entity NameSingular='AccountTransaction' IsView='true' >
+      <Fields>
+        <PrimaryKeyField Name='No' Type='int' IsIdentity='true' />
+        <ForeignKeyField Name='UserNo' Type='int' TargetEntity='User' TargetField='No' />
+        <ForeignKeyField Name='AccountNo' Type='int' TargetEntity='Account' TargetField='No' IsParentConnection='true' />
+        <ForeignKeyField Name='VerificationNo' Type='int' TargetEntity='Verification' TargetField='No' IsParentConnection='true' />
+        <Field Name='Amount' Type='money' />
+        <Field Name='Note' Type='varchar(1024)' />
+        <Field Name='CreatedTime' Type='datetime' />
+        <ViewField Name='VerificationSerialNo' Type='int' />
+        <ViewField Name='TransactionTime' Type='datetime' />
+        <ViewField Name='AccountingDate' Type='datetime' />
+        <ViewField Name='AccountName' Type='varchar(128)' />
+        <ViewField Name='UserName' Type='varchar(128)' />
+        <ViewField Name='ShowInDiagram' Type='bit' />
+      </Fields>
+    </Entity>
+
+    <Entity NameSingular='TagAccountSnapshot' IsView='true' >
+      <Fields>
+        <PrimaryKeyField Name='No' Type='int' IsIdentity='true' />
+        <ForeignKeyField Name='UserNo' Type='int' TargetEntity='User' TargetField='No' />
+        <ForeignKeyField Name='TagAccountNo' Type='int' TargetEntity='TagAccount' TargetField='No' IsParentConnection='true' />
+        <Field Name='BalanceAmount' Type='money' />
+        <Field Name='Reason' Type='int' EnumValues='AccountTransactionAdded/AccountTransactionUpdated/DefinitionChangedByUser' />
+        <Field Name='CreatedTime' Type='datetime' />
+        <ViewField Name='AccountName' Type='varchar(128)' />
+      </Fields>
+    </Entity>
+
+    <Entity NameSingular='CashBookTransaction' IsView='true'>
+      <Fields>
+        <PrimaryKeyField Name='No' Type='int' IsIdentity='true' />
+        <ForeignKeyField Name='UserNo' Type='int' TargetEntity='User' TargetField='No' />
+        <ForeignKeyField Name='CategoryNo' Type='int' TargetEntity='Category' TargetField='No' />
+        <ForeignKeyField Name='VerificationNo' Type='int' TargetEntity='Verification' TargetField='No' IsParentConnection='true' />
+        <Field Name='Amount' Type='money' />
+        <Field Name='Note' Type='varchar(1024)' />
+        <Field Name='CreatedTime' Type='datetime' />
+        <ViewField Name='VerificationSerialNo' Type='int' />
+        <ViewField Name='TransactionTime' Type='datetime' />
+        <ViewField Name='AccountingDate' Type='datetime' />
+        <ViewField Name='CategoryName' Type='varchar(128)' />
+        <ViewField Name='ShowInDiagram' Type='bit' />
+      </Fields>
+    </Entity>
+
+    <Entity NameSingular='LogItem' >
+      <Fields>
+        <PrimaryKeyField Name='No' Type='int' IsIdentity='true' />
+        <ForeignKeyField Name='UserNo' Type='int' TargetEntity='User' TargetField='No' AllowNull='true' />
+        <ForeignKeyField Name='VerificationNo' Type='int' TargetEntity='Verification' TargetField='No' AllowNull='true' />
+        <ForeignKeyField Name='AccountNo' Type='int' TargetEntity='Account' TargetField='No' AllowNull='true' />
+        <Field Name='Type' Type='int' EnumValues='AccountTagRecalculated' />
+        <Field Name='Description' Type='nvarchar(MAX)' />
+        <Field Name='LogTime' Type='datetime' />
+      </Fields>
+    </Entity>
+
+    <Entity NameSingular='CashBoxSettings' NamePlural='CashBoxSettings'>
+      <Fields>
+        <PrimaryKeyField Name='No' Type='int' EnumValues='CurrentApplicationNo' />
+        <Field Name='AccountingYear' Type='int' />
+      </Fields>
+    </Entity>
+    
+  </Entities>
+</EasyBase>
+
