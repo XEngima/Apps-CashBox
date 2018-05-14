@@ -879,7 +879,7 @@ namespace EasyBase.Classes
             Verification = null;
         }
 
-        public CashBookTransaction(int userNo, int categoryNo, int verificationNo, decimal amount, string note, DateTime createdTime)
+        public CashBookTransaction(int userNo, int categoryNo, int verificationNo, DateTime transactionTime, DateTime accountingDate, decimal amount, string note, DateTime createdTime)
         {
             No = 0;
             UserNo = userNo;
@@ -889,8 +889,8 @@ namespace EasyBase.Classes
             Note = note;
             CreatedTime = createdTime;
             VerificationSerialNo = 0;
-            TransactionTime = new DateTime();
-            AccountingDate = new DateTime();
+            TransactionTime = transactionTime;
+            AccountingDate = accountingDate;
             CategoryName = "";
             ShowInDiagram = false;
             Verification = null;

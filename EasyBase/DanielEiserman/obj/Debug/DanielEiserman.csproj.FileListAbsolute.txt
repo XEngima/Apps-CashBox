@@ -1,5 +1,0 @@
-C:\Projekt\CashBox\EasyBase\DanielEiserman\bin\Debug\DanielEiserman.dll
-C:\Projekt\CashBox\EasyBase\DanielEiserman\bin\Debug\DanielEiserman.pdb
-C:\Projekt\CashBox\EasyBase\DanielEiserman\obj\Debug\DanielEiserman.csprojResolveAssemblyReference.cache
-C:\Projekt\CashBox\EasyBase\DanielEiserman\obj\Debug\DanielEiserman.dll
-C:\Projekt\CashBox\EasyBase\DanielEiserman\obj\Debug\DanielEiserman.pdb

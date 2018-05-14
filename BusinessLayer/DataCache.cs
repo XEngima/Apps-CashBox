@@ -230,9 +230,9 @@ namespace EasyBase.BusinessLayer
                 }
                 else
                 {
-                    for (int i = 0; i < Verifications.Count(); i++)
+                    for (int i = 0; i < CashBookTransactions.Count(); i++)
                     {
-                        if (AccountTransactions[i].No == cashbookTransaction.No)
+                        if (CashBookTransactions[i].No == cashbookTransaction.No)
                         {
                             CashBookTransactions[i] = cashbookTransaction;
                             break;

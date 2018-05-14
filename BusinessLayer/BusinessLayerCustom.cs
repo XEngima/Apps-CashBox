@@ -633,7 +633,7 @@ namespace EasyBase.BusinessLayer
                 verification.AccountingDate = DanielEiserman.DateAndTime.Date.FloorDateTime(accountingDate);
                 DataCache.Save(verification);
 
-                transaction = new CashBookTransaction(userNo, categoryNo, verification.No, amount,
+                transaction = new CashBookTransaction(userNo, categoryNo, verification.No, verification.Date, verification.AccountingDate, amount,
                                                                           note, CurrentApplication.DateTimeNow);
                 DataCache.Save(transaction);
 

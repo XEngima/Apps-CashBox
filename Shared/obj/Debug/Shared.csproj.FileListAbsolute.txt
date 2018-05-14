@@ -1,7 +1,0 @@
-C:\Projekt\CashBox\Shared\bin\Debug\EasyBase.Shared.dll
-C:\Projekt\CashBox\Shared\bin\Debug\EasyBase.Shared.pdb
-C:\Projekt\CashBox\Shared\bin\Debug\DanielEiserman.dll
-C:\Projekt\CashBox\Shared\bin\Debug\DanielEiserman.pdb
-C:\Projekt\CashBox\Shared\obj\Debug\Shared.csprojResolveAssemblyReference.cache
-C:\Projekt\CashBox\Shared\obj\Debug\EasyBase.Shared.dll
-C:\Projekt\CashBox\Shared\obj\Debug\EasyBase.Shared.pdb
