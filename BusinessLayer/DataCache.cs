@@ -43,13 +43,16 @@ namespace EasyBase.BusinessLayer
 
                 Settings = core.GetCashBoxSettings(CashBoxSettingsNo.CurrentApplicationNo);
 
-                Verifications = core.GetVerificationsByYear(year);
+                //Verifications = core.GetVerificationsByYear(year);
+                Verifications = core.GetVerifications();
 
-                Condition isThisYear = new Condition(AccountTransaction.fTransactionTime, CompareOperator.GreaterThanOrEqualTo, new DateTime(year, 1, 1), DateTimeResolution.Day);
-                AccountTransactions = core.GetAccountTransactions(isThisYear);
+                //Condition isThisYear = new Condition(AccountTransaction.fTransactionTime, CompareOperator.GreaterThanOrEqualTo, new DateTime(year, 1, 1), DateTimeResolution.Day);
+                //AccountTransactions = core.GetAccountTransactions(isThisYear);
+                AccountTransactions = core.GetAccountTransactions();
 
-                isThisYear = new Condition(CashBookTransaction.fTransactionTime, CompareOperator.GreaterThanOrEqualTo, new DateTime(year, 1, 1), DateTimeResolution.Day);
-                CashBookTransactions = core.GetCashBookTransactions(isThisYear);
+                //isThisYear = new Condition(CashBookTransaction.fTransactionTime, CompareOperator.GreaterThanOrEqualTo, new DateTime(year, 1, 1), DateTimeResolution.Day);
+                //CashBookTransactions = core.GetCashBookTransactions(isThisYear);
+                CashBookTransactions = core.GetCashBookTransactions();
 
                 Condition isEarlier = new Condition(AccountTransaction.fTransactionTime, CompareOperator.LessThan, new DateTime(year, 1, 1));
                 EarlierAccountTransactions = core.GetAccountTransactions(isEarlier);
