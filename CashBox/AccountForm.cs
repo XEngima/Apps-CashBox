@@ -396,22 +396,6 @@ namespace CashBox
             }
         }
 
-        private void transactionToolStripButton_Click(object sender, EventArgs e)
-        {
-            var form = new AccountTransferForm(DataCache);
-            DialogResult result = form.ShowDialog();
-
-            if (result == DialogResult.OK) {
-
-                using (var core = new StandardBusinessLayer(DataCache)) {
-                    core.Connect();
-                    core.DoAccountTransaction(form.TransactionDate, form.Amount, form.SourceAccountNo, form.SourceNote, form.TargetAccountNo, form.targetNote);
-                }
-
-                LoadTransactionGrid();
-            }
-        }
-
         private void transactionsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0) {
@@ -589,61 +573,6 @@ namespace CashBox
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DeleteSelectedTransaction();
-        }
-
-        private void createAccountTransactionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AccountTransaction accountTransaction = null;
-            int transactionNo = (int)transactionsDataGridView.SelectedRows[0].Cells[AccountTransaction.fNo].Value;
-            int verificationNo = (int)transactionsDataGridView.SelectedRows[0].Cells[AccountTransaction.fVerificationNo].Value;
-            AccountTransactionForm form;
-
-            using (var core = new StandardBusinessLayer(DataCache)) {
-                core.Connect();
-
-                //accountTransaction = core.GetAccountTransaction(transactionNo);
-                accountTransaction = DataCache.GetAccountTransaction(transactionNo);
-
-                form = new AccountTransactionForm(DataCache);
-
-                if (accountTransaction != null) {
-                    CashBookTransactionCollection cashBookTransactions = core.GetCashBookTransactionsByVerificationNo(verificationNo);
-                    AccountTransactionCollection accountTransactions = core.GetAccountTransactionsByVerificationNo(verificationNo);
-
-                    decimal sum = accountTransactions.Sum(t => t.Amount) - cashBookTransactions.Sum(t => t.Amount);
-
-                    /*
-                    decimal sum = accountTransaction.Amount - cashBookTransactions.Sum(t => t.Amount) + accountTransactions.Sum(t => t.Amount);
-
-                    if (accountTransaction.SourceAccountTransactionNo != null) {
-                        AccountTransaction sourceAccountTransaction = core.GetAccountTransaction((int)accountTransaction.SourceAccountTransactionNo);
-                        sum -= sourceAccountTransaction.Amount;
-                    }
-                    */
-
-                    form.SourceAccountTransactionNo = accountTransaction.No;
-                    form.Amount = -sum;
-                }
-            }
-
-            DialogResult result = form.ShowDialog();
-
-            if (result == DialogResult.OK) {
-                AccountTransaction targetAccountTransaction;
-
-                using (var core = new StandardBusinessLayer(DataCache)) {
-                    core.Connect();
-
-                    //accountTransaction = core.GetAccountTransaction(transactionNo);
-                    accountTransaction = DataCache.GetAccountTransaction(transactionNo);
-                    targetAccountTransaction = new AccountTransaction(CurrentApplication.UserNo, form.AccountNo, accountTransaction.VerificationNo, accountTransaction.TransactionTime, accountTransaction.AccountingDate,
-                        form.Amount, form.Note, CurrentApplication.DateTimeNow);
-
-                    DataCache.Save(targetAccountTransaction);
-                }
-
-                ApplicationEvents.OnAccountTransactionCreated(targetAccountTransaction.No, targetAccountTransaction.VerificationNo);
-            }
         }
 
         private void transactionsDataGridView_Sorted(object sender, EventArgs e)

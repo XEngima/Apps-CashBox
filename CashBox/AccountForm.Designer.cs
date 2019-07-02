@@ -33,12 +33,10 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.accountComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.depositWithdrawalButton = new System.Windows.Forms.ToolStripButton();
-            this.transactionToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.deleteToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.transactionsDataGridView = new System.Windows.Forms.DataGridView();
             this.transactionContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.createCashBookItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.createAccountTransactionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.balanceToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -55,7 +53,6 @@
             this.toolStripLabel1,
             this.accountComboBox,
             this.depositWithdrawalButton,
-            this.transactionToolStripButton,
             this.deleteToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -87,22 +84,12 @@
             this.depositWithdrawalButton.Text = "Insättning/Uttag";
             this.depositWithdrawalButton.Click += new System.EventHandler(this.depositWithdrawalButton_Click);
             // 
-            // transactionToolStripButton
-            // 
-            this.transactionToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("transactionToolStripButton.Image")));
-            this.transactionToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.transactionToolStripButton.Name = "transactionToolStripButton";
-            this.transactionToolStripButton.Size = new System.Drawing.Size(114, 22);
-            this.transactionToolStripButton.Text = "Kontoöverföring";
-            this.transactionToolStripButton.Visible = false;
-            this.transactionToolStripButton.Click += new System.EventHandler(this.transactionToolStripButton_Click);
-            // 
             // deleteToolStripButton
             // 
             this.deleteToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripButton.Image")));
             this.deleteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.deleteToolStripButton.Name = "deleteToolStripButton";
-            this.deleteToolStripButton.Size = new System.Drawing.Size(65, 22);
+            this.deleteToolStripButton.Size = new System.Drawing.Size(64, 22);
             this.deleteToolStripButton.Text = "Ta bort";
             this.deleteToolStripButton.Click += new System.EventHandler(this.deleteToolStripButton_Click);
             // 
@@ -134,10 +121,9 @@
             // 
             this.transactionContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createCashBookItemToolStripMenuItem,
-            this.createAccountTransactionToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.transactionContextMenuStrip.Name = "transactionContextMenuStrip";
-            this.transactionContextMenuStrip.Size = new System.Drawing.Size(195, 70);
+            this.transactionContextMenuStrip.Size = new System.Drawing.Size(184, 48);
             // 
             // createCashBookItemToolStripMenuItem
             // 
@@ -146,15 +132,6 @@
             this.createCashBookItemToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
             this.createCashBookItemToolStripMenuItem.Text = "Skapa &kassahändelse";
             this.createCashBookItemToolStripMenuItem.Click += new System.EventHandler(this.createCashBookItemToolStripMenuItem_Click);
-            // 
-            // createAccountTransactionToolStripMenuItem
-            // 
-            this.createAccountTransactionToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("createAccountTransactionToolStripMenuItem.Image")));
-            this.createAccountTransactionToolStripMenuItem.Name = "createAccountTransactionToolStripMenuItem";
-            this.createAccountTransactionToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.createAccountTransactionToolStripMenuItem.Text = "Skapa konto&överföring";
-            this.createAccountTransactionToolStripMenuItem.Visible = false;
-            this.createAccountTransactionToolStripMenuItem.Click += new System.EventHandler(this.createAccountTransactionToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
@@ -212,11 +189,9 @@
         private System.Windows.Forms.ToolStripButton depositWithdrawalButton;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel balanceToolStripStatusLabel;
-        private System.Windows.Forms.ToolStripButton transactionToolStripButton;
         private System.Windows.Forms.ToolStripButton deleteToolStripButton;
         private System.Windows.Forms.ContextMenuStrip transactionContextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem createCashBookItemToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem createAccountTransactionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }

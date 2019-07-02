@@ -76,18 +76,6 @@
     <Compile Include="AccountForm.Designer.cs">
       <DependentUpon>AccountForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AccountTransferForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AccountTransferForm.Designer.cs">
-      <DependentUpon>AccountTransferForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AccountTransactionForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AccountTransactionForm.Designer.cs">
-      <DependentUpon>AccountTransactionForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="CreateUsersForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,12 +147,6 @@
     </Compile>
     <EmbeddedResource Include="AccountForm.resx">
       <DependentUpon>AccountForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AccountTransferForm.resx">
-      <DependentUpon>AccountTransferForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AccountTransactionForm.resx">
-      <DependentUpon>AccountTransactionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CreateUsersForm.resx">
       <DependentUpon>CreateUsersForm.cs</DependentUpon>
