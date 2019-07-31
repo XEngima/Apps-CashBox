@@ -139,7 +139,7 @@ namespace EasyBase.BusinessLayer
 
             foreach (var accountTag in AccountTags)
             {
-                total += accountTag.MoneyValue;
+                total += accountTag.Amount;
 
                 string text;
                 if (accountTag.Type == AccountTagType.ExactAmount)

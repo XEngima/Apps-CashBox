@@ -135,10 +135,14 @@ namespace EasyBase.BusinessLayer
                 account = core.GetAccount(accountNo);
             }
 
-            var earlierTransactions = EarlierAccountTransactions.Where(t => t.AccountNo == accountNo).ToList();
+            //var earlierTransactions = EarlierAccountTransactions.Where(t => t.AccountNo == accountNo).ToList();
             var transactions = AccountTransactions.Where(t => t.AccountNo == accountNo).ToList();
 
-            return account.BalanceBroughtForwardAmount + earlierTransactions.Sum(t => t.Amount) + transactions.Sum(t => t.Amount);
+            //var earlierTotalAmount = earlierTransactions.Sum(t => t.Amount);
+            var transactionsTotalAmount = transactions.Sum(t => t.Amount);
+
+            //return account.BalanceBroughtForwardAmount + earlierTotalAmount + transactionsTotalAmount;
+            return account.BalanceBroughtForwardAmount + transactionsTotalAmount;
         }
 
         public void Save(Verification verification)
